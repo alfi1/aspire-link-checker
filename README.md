@@ -1,4 +1,4 @@
-d# aspire-link-checker
+# aspire-link-checker
 To check through URLs in Aspire reading lists, and report on any dead links.
 
 Written in Python 3. Will run on Windows, Linux or Unix.
