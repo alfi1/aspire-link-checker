@@ -2,9 +2,24 @@
 To check through all URLs in Aspire reading lists, and report back on any dead links.
 
 Written in Python 3. Will run on Windows, Linux or Unix.
-Because it takes so long to run, it is best to run in on a Windows machine that you can leave alone for hours, or (better) as nohup on Linux. 
+Because it takes so long to run, it is best to run in on a machine that you can leave alone for hours, or (better) as nohup on Linux. 
 
-# Instructions for use
+# The different files explained
+There is a file for all users of Talis Aspire:
+
+- aspire_link_checker.py - For sites that do NOT have Aspire Advanced MIS.
+- aspire_link_check_mis_redshift_ANONYMISED.py - For those with access to Advanced MIS, and who want to run Python in Windows.
+- aspire_link_check_mis_ANONYMISED.py - For users of Advanced MIS, who want to run on a Windows Linux subsystem or straight Linux machine.
+
+My preference is aspire_link_check_mis_ANONYMISED.py, as running the script on Linux opens up more options for scheduling via cron,
+automatically emailing the results, or automatically SFTPing them to a specific location. It is the most versatile choice.
+
+# Instructions for using aspire_link_check_mis_redshift_ANONYMISED.py or aspire_link_check_mis_ANONYMISED.py
+The code should be self-explanatory through its notes.
+Copy to a machine authorised for Aspire Advanced MIS, install the Amazon Redshift driver, and the other python libraries required.
+Add your database connection details in the indicated locations, and fire it off.
+
+# Instructions for using aspire_link_checker.py
 Download an 'all_list_items' CSV report from Aspire.
 Move aspire_link_checker.py to the directory from which you intend to run it (and the same one that contains your all_list_items*.csv).
 
