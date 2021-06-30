@@ -14,6 +14,8 @@ There is a file for all users of Talis Aspire:
 My preference is aspire_link_check_mis_ANONYMISED.py, as running the script on Linux opens up more options for scheduling via cron,
 automatically emailing the results, or automatically SFTPing them to a specific location. It is the most versatile choice.
 
+I have put instructions for installing the driver in the project wiki. Go on! Do the work in Linux!
+
 # Instructions for using aspire_link_check_mis_redshift_ANONYMISED.py or aspire_link_check_mis_ANONYMISED.py
 The code should be self-explanatory through its notes.
 Copy to a machine authorised for Aspire Advanced MIS, install the Amazon Redshift driver, and the other python libraries required.
