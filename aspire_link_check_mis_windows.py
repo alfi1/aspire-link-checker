@@ -12,31 +12,29 @@
 
 # Tim Graves. University of Sussex. t.c.graves@sussex.ac.uk
 
-  
 import redshift_connector
 from csv import writer
 import requests
-import re
+import yaml
+
+# read configuration
+with open("config.yml", "r") as ymlfile:
+    cfg = yaml.load(ymlfile, Loader=yaml.FullLoader)
 
 # Connect to Aspire Advanced MIS, and retrieve all currently published lists
-# You will need to add your own connection details for Advanced MIS
 with redshift_connector.connect(
-    host='YOUR-HOST',
-    database='YOUR-DATABASE',
-    user='USERNAME',
-    password='PASSWORD'
+    host=cfg['database']['host'],
+    database=cfg['database']['database'],
+    user=cfg['database']['username'],
+    password=cfg['database']['password'],
     # port value of 5439 is specified by default
 ) as conn:
-
-# You shouldn't need to change anything below here, unless you want to change the SQL statement
-# , which you will need to do each year anyway to change the time_period
-
     with conn.cursor() as cursor:
         # The SQL statement
-        cursor.execute("select i.item_url, l.title, i.web_address from f_rl_items i, f_rl_lists l where i.list_guid = l.list_guid and i.status = 'Published' and i.web_address != '' and i.time_period = '21/22'")
+        cursor.execute(cfg['sql'])
 
         results: tuple = cursor.fetchall()
-		
+
 # Function to write out the results
 def writeOut(output_data):
     with open('all_items_link_report.csv', 'a') as f_object:

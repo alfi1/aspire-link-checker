@@ -15,25 +15,30 @@
 import psycopg2
 from csv import writer
 import requests
-import re
+import yaml
+
+# read configuration
+with open("config.yml", "r") as ymlfile:
+    cfg = yaml.load(ymlfile, Loader=yaml.FullLoader)
 
 # Connect to Aspire Advanced MIS, and retrieve all currently published lists
-# You will need to add your own database details
-con=psycopg2.connect(dbname= 'YOUR-DATABASE', host='YOUR-HOST-FOR-ADVANCED-MIS', port= '5439', user= 'USERNAME', password= 'PASSWORD')
-
-# You shouldn't need to change anything below here
-# Apart from the time_period as each year passes
+con = psycopg2.connect(
+    dbname=cfg['database']['database'],
+    host=cfg['database']['host'],
+    port='5439',
+    user=cfg['database']['username'],
+    password=cfg['database']['password']
+)
 
 cur = con.cursor()
 
 # The SQL statement
-cur.execute("select i.item_url, l.title, i.web_address from f_rl_items i, f_rl_lists l where i.list_guid = l.list_guid and i.status = 'Published' and i.web_address != '' and i.time_period = '21/22'")
+cur.execute(cfg['sql'])
 
 results = cur.fetchall()
 
 cur.close() 
 
-		
 # Function to write out the results
 def writeOut(output_data):
     with open('all_items_link_report.csv', 'a') as f_object:
