@@ -1,0 +1,20 @@
+database:
+  host: tenant-advancedmis.talis.com
+  database: yourdatabasename
+  username: yourusername
+  password: yourpassword
+sql: |
+  -- the current time period for lists that have links you want to check
+  -- this will be the value as you find it in the time period column of the all list items report
+  SELECT
+    i.item_url,
+    l.title,
+    i.web_address
+  FROM
+    f_rl_items i,
+    f_rl_lists l
+  WHERE i.list_guid = l.list_guid
+  AND i.status = 'Published'
+  AND i.web_address != ''
+  AND i.time_period = '21/22'
+  LIMIT 2
