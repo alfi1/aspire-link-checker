@@ -4,6 +4,12 @@ To check through all URLs in Aspire reading lists, and report back on any dead l
 Written in Python 3. Will run on Windows, Linux or Unix.
 Because it takes so long to run, it is best to run in on a machine that you can leave alone for hours, or (better) as nohup on Linux. 
 
+## Documentation in need of updating! 08/07/2021
+I found out that the ODBC driver for Linux that I had originally chosen would cost me £7k in license fees!
+I have rewritten the code to use a free JDBC driver.
+This code needs more testing, after which I will update the documentation.
+
+
 ## Installation (Linux)
 
 You will need `git`, `python3`, and `pipenv` installed on your linux machine. 
