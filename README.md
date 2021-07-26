@@ -14,7 +14,9 @@ There is a file for all users of Talis Aspire:
 My preference is `aspire_link_check_mis_jdbc.py`, as running the script on Linux opens up more options for scheduling via cron,
 automatically emailing the results, or automatically SFTPing them to a specific location. It is the most versatile choice.
 
-I have put instructions for installing the driver in the project wiki.
+I have put instructions for installing the JDBC driver in the project wiki.
+
+There is a wiki page that explains how to run each file, depending on which version you choose to use.
 
 
 ## Installation (Linux)
@@ -81,15 +83,7 @@ sql: |
 
 Make sure you have also copied your `config.yml` and updated it with your database connection details in the indicated locations, and fire it off.
 
-## Instructions for using aspire_link_checker.py
-Download an 'all_list_items' CSV report from Aspire.
-Move aspire_link_checker.py to the directory from which you intend to run it (and the same one that contains your all_list_items*.csv).
-
-The only line of the file that should need editing is the one that defines the source file downloaded from Aspire:
-  original_filename = 'all_list_items_2021_03_11.csv'
-
-## Run!
-
+## Run time
 The script takes hours to run. By example, on 22/03/2021, I ran it against all our current reading lists. It took 12 hours to run, and detected 208 dead links.
 
 When finished, it will output the report file 'all_items_link_report.csv', which contains:
