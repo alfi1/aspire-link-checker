@@ -4,10 +4,17 @@ To check through all URLs in Aspire reading lists, and report back on any dead l
 Written in Python 3. Will run on Windows, Linux or Unix.
 Because it takes so long to run, it is best to run in on a machine that you can leave alone for hours, or (better) as nohup on Linux. 
 
-## Documentation in need of updating! 08/07/2021
-I found out that the ODBC driver for Linux that I had originally chosen would cost me £7k in license fees!
-I have rewritten the code to use a free JDBC driver.
-This code needs more testing, after which I will update the documentation.
+## The different files explained
+There is a file for all users of Talis Aspire:
+
+- `aspire_link_checker.py` - For sites that do NOT have Aspire Advanced MIS.
+- `aspire_link_check_mis_windows.py` - For those with access to Advanced MIS, and who want to run Python in Windows.
+- `aspire_link_check_mis_jdbc.py` - For users of Advanced MIS, who want to run on a Windows Linux subsystem or straight Linux machine.
+
+My preference is `aspire_link_check_mis.py`, as running the script on Linux opens up more options for scheduling via cron,
+automatically emailing the results, or automatically SFTPing them to a specific location. It is the most versatile choice.
+
+I have put instructions for installing the driver in the project wiki.
 
 
 ## Installation (Linux)
@@ -64,18 +71,6 @@ sql: |
   AND i.time_period = '21/22'
   LIMIT 2
 ```
-
-## The different files explained
-There is a file for all users of Talis Aspire:
-
-- `aspire_link_checker.py` - For sites that do NOT have Aspire Advanced MIS.
-- `aspire_link_check_mis_windows.py` - For those with access to Advanced MIS, and who want to run Python in Windows.
-- `aspire_link_check_mis.py` - For users of Advanced MIS, who want to run on a Windows Linux subsystem or straight Linux machine.
-
-My preference is `aspire_link_check_mis.py`, as running the script on Linux opens up more options for scheduling via cron,
-automatically emailing the results, or automatically SFTPing them to a specific location. It is the most versatile choice.
-
-I have put instructions for installing the driver in the project wiki. Go on! Do the work in Linux!
 
 ## Instructions for using aspire_link_check_mis_windows.py or aspire_link_check_mis.py
 
