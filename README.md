@@ -8,7 +8,7 @@ Because it takes so long to run, it is best to run in on a machine that you can 
 There is a file for all users of Talis Aspire:
 
 - `aspire_link_checker.py` - For sites that do NOT have Aspire Advanced MIS.
-- `aspire_link_check_mis_windows.py` - For those with access to Advanced MIS, and who want to run Python in Windows.
+- `aspire_link_check_mis_windows.py` - For those with access to Advanced MIS, who want to run Python in Windows.
 - `aspire_link_check_mis_jdbc.py` - For users of Advanced MIS, who want to run on a Windows Linux subsystem or straight Linux machine.
 
 My preference is `aspire_link_check_mis_jdbc.py`, as running the script on Linux opens up more options for scheduling via cron,
