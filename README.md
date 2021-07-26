@@ -20,6 +20,8 @@ There is a wiki page that explains how to run each file, depending on which vers
 
 [For sites with access to Advanced MIS, and who want to run Python in Windows.](https://github.com/alfi1/aspire-link-checker/wiki/Link-checking-for-users-of-Advanced-MIS:-running-Python-on-Windows)
 
+[For sites with Advanced MIS, who want to run Python on Linux.](https://github.com/alfi1/aspire-link-checker/wiki/Link-checking-for-users-of-Advanced-MIS:-running-Python-on-Linux)
+
 
 ## Note on run time
 The script takes hours to run. By example, on 22/03/2021, I ran it against all our current reading lists. It took 12 hours to run, and detected 208 dead links.
