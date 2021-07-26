@@ -11,7 +11,7 @@ There is a file for all users of Talis Aspire:
 - `aspire_link_check_mis_windows.py` - For those with access to Advanced MIS, and who want to run Python in Windows.
 - `aspire_link_check_mis_jdbc.py` - For users of Advanced MIS, who want to run on a Windows Linux subsystem or straight Linux machine.
 
-My preference is `aspire_link_check_mis.py`, as running the script on Linux opens up more options for scheduling via cron,
+My preference is `aspire_link_check_mis_jdbc.py`, as running the script on Linux opens up more options for scheduling via cron,
 automatically emailing the results, or automatically SFTPing them to a specific location. It is the most versatile choice.
 
 I have put instructions for installing the driver in the project wiki.
