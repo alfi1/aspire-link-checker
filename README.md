@@ -14,76 +14,9 @@ There is a file for all users of Talis Aspire:
 My preference is `aspire_link_check_mis_jdbc.py`, as running the script on Linux opens up more options for scheduling via cron,
 automatically emailing the results, or automatically SFTPing them to a specific location. It is the most versatile choice.
 
-I have put instructions for installing the JDBC driver in the project wiki.
-
 There is a wiki page that explains how to run each file, depending on which version you choose to use.
 
-
-## Installation (Linux)
-
-You will need `git`, `python3`, and `pipenv` installed on your linux machine. 
-pipenv may also be available for windows, but this is untested. 
-
-1. Clone this repository to your machine.
-2. Setup the pipenv environment - this will insall and keep all packages for this script separate from anything else you are running in python.
-
-   ```bash
-   pipenv install
-   ```
-   
-3. Then enter the pipenv shell to actually run your code.
-
-   ```bash
-   pipenv shell
-   ```
-
-4. Now assuming you have setup your config file (see below) you are ready to go
-
-   ```bash
-   python aspire_link_check_mis.py
-   ```
-
-## Getting configured
-
-There is a file called `config-template.yml` copy this to a new file called `config.yml` and update it with your 
-specific user details.
-
-The default configuration looks like this: You can change the SQL query here if you need to. 
-Note that the default sql query includes a `LIMIT` clause so that you can try it out before you run it for real.
-
-```yml
-database:
-  host: tenant-advancedmis.talis.com
-  database: yourdatabasename
-  username: yourusername
-  password: yourpassword
-sql: |
-  -- the current time period for lists that have links you want to check
-  -- this will be the value as you find it in the time period column of the all list items report
-  SELECT
-    i.item_url,
-    l.title,
-    i.web_address
-  FROM
-    f_rl_items i,
-    f_rl_lists l
-  WHERE i.list_guid = l.list_guid
-  AND i.status = 'Published'
-  AND i.web_address != ''
-  AND i.time_period = '21/22'
-  LIMIT 2
-```
-
-## Instructions for using aspire_link_check_mis_windows.py or aspire_link_check_mis.py
-
-- The code should be self-explanatory through its notes.
-- Copy the code to a machine authorised for Aspire Advanced MIS,
-- install the Amazon Redshift driver, 
-- and any other python libraries required.
-
-Make sure you have also copied your `config.yml` and updated it with your database connection details in the indicated locations, and fire it off.
-
-## Run time
+## Note on run time
 The script takes hours to run. By example, on 22/03/2021, I ran it against all our current reading lists. It took 12 hours to run, and detected 208 dead links.
 
 When finished, it will output the report file 'all_items_link_report.csv', which contains:
