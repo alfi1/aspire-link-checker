@@ -35,7 +35,8 @@ When finished, it will output the report file 'all_items_link_report.csv', which
 Feel free to tune and tweak the code. If you make it better or faster, please let me know.
 
 You could certainly make it significantly faster by reducing the time that the script checks each URL:
-  response = requests.get(final_url, timeout=15)
+
+`response = requests.get(final_url, timeout=15)`
 
 t.c.graves@sussex.ac.uk 
 
