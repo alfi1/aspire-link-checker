@@ -34,9 +34,6 @@ jdbc_driver_name = "com.amazon.redshift.jdbc.Driver"
 # You will need to change this to reflect where you have saved the driver
 jdbc_driver_loc = os.path.join(r'/home/alfi1/redshift-jdbc42-2.0.0.4.jar')
 
-# SQL Query
-sql_str = "select i.item_url, l.title, i.web_address from f_rl_items i, f_rl_lists l where i.list_guid = l.list_guid and i.status = 'Published' and i.web_address != '' and i.time_period = '21/22' limit 50"
-
 # JDBC connection string
 connection_string='jdbc:redshift://'+ host+':'+port+'/'+database
 
@@ -49,7 +46,7 @@ conn = jay.connect(jdbc_driver_name, connection_string, {'user': username, 'pass
 jars=jdbc_driver_loc)
 
 curs = conn.cursor()
-curs.execute(sql_str)
+curs.execute(cfg['sql'])
 results = curs.fetchall()
 
 ############
