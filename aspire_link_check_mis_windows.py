@@ -73,7 +73,7 @@ for each_one in results:
             final_url = 'http' + temp_url
             
             try:
-                response = requests.head(final_url, timeout=15)   
+                response = requests.head(final_url, headers=headers, timeout=15)   
                 status = response.status_code
             except:
                 status  = 408
@@ -88,7 +88,7 @@ for each_one in results:
     else: # Carry on and process the entries without duplicate URLs
 		
         try:
-            response = requests.head(the_url, timeout=15)   
+            response = requests.head(the_url, headers=headers, timeout=15)   
             status = response.status_code
         except:
             status  = 408
