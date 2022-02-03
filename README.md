@@ -36,7 +36,7 @@ Feel free to tune and tweak the code. If you make it better or faster, please le
 
 You could certainly make it significantly faster by reducing the time that the script checks each URL:
 
-`response = requests.get(final_url, timeout=15)`
+`response = requests.head(final_url, headers=headers, timeout=15)`
 
 t.c.graves@sussex.ac.uk 
 
