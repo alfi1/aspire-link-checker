@@ -6,6 +6,9 @@
 # 08/07/2021
 # Using the JDBC connection. (I found out  that my previous driver would cost £8k in licencing!
 
+# 03/02/2022
+# use head requests rather than get
+
 # Tim Graves. t.c.graves@sussex.ac.uk. University of Sussex Library
 
 import jaydebeapi as jay
@@ -49,6 +52,9 @@ curs = conn.cursor()
 curs.execute(cfg['sql'])
 results = curs.fetchall()
 
+# set request headers
+headers = { 'User-Agent', 'Aspire-Link-Checker'}
+
 ############
 		
 # Function to write out the results
@@ -85,7 +91,7 @@ for each_one in results:
             final_url = 'http' + temp_url
             #print(final_url)
             try:
-                response = requests.get(final_url, timeout=15)   # Original timeout 15
+                response = requests.head(final_url, headers=headers, timeout=15)   # Original timeout 15
                 status = response.status_code
             except:
                 status  = 408
@@ -100,7 +106,7 @@ for each_one in results:
     else: # Carry on and process the entries without duplicate URLs
 		
         try:
-            response = requests.get(the_url, timeout=15)   # Original timeout 15
+            response = requests.head(the_url, headers=headers, timeout=15)   # Original timeout 15
             status = response.status_code
         except:
             status  = 408

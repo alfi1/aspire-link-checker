@@ -17,6 +17,9 @@ from csv import writer
 import requests
 import yaml
 
+# set request headers
+headers = { 'User-Agent', 'Aspire-Link-Checker'}
+
 # read configuration
 with open("config.yml", "r") as ymlfile:
     cfg = yaml.load(ymlfile, Loader=yaml.FullLoader)
@@ -70,7 +73,7 @@ for each_one in results:
             final_url = 'http' + temp_url
             
             try:
-                response = requests.get(final_url, timeout=15)   
+                response = requests.head(final_url, headers=headers, timeout=15)   
                 status = response.status_code
             except:
                 status  = 408
@@ -85,7 +88,7 @@ for each_one in results:
     else: # Carry on and process the entries without duplicate URLs
 		
         try:
-            response = requests.get(the_url, timeout=15)   
+            response = requests.head(the_url, headers=headers, timeout=15)   
             status = response.status_code
         except:
             status  = 408

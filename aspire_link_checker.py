@@ -9,6 +9,9 @@ import requests
 import re
 from csv import writer 
 
+# set request headers
+headers = { 'User-Agent', 'Aspire-Link-Checker'}
+
 original_filename = 'all_list_items_2021_03_11.csv'
 
 # In a normal run, you shouldn't need to edit anything below this point
@@ -91,7 +94,7 @@ for line in fh:
             final_url = 'http' + temp_url
             #print(final_url)
             try:
-                response = requests.get(final_url, timeout=15)   # Original timeout 15
+                response = requests.head(final_url, headers=headers, timeout=15)   # Original timeout 15
                 status = response.status_code
             except:
                 status  = 408
@@ -107,7 +110,7 @@ for line in fh:
     else: # Carry on and process the entries without duplicate URLs
 		
         try:
-            response = requests.get(the_url, timeout=15)   # Original timeout 15
+            response = requests.head(the_url, headers=headers, timeout=15)   # Original timeout 15
             status = response.status_code
         except:
             status  = 408
